@@ -1,0 +1,16 @@
+{
+  "files.associations": {
+    "*.liquid": "liquid"
+  },
+  "[liquid]": {
+    "editor.defaultFormatter": "Shopify.theme-check-vscode",
+    "editor.formatOnSave": true
+  },
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "search.exclude": {
+    "node_modules": true,
+    "locales": true
+  }
+}
