@@ -1,6 +1,6 @@
 # The same thing again, from a clean clone
 
-**17 September 2026, 13:45 UTC.** Fifteen seconds, start to finish.
+**17 September 2026, 13:46 UTC.** Fifteen seconds, start to finish.
 
 Everything on the page and in the README says what happens when someone clones
 this repository and runs the three commands. This is that, done on a machine
@@ -14,7 +14,7 @@ where the repository had never been, reading nothing but what GitHub serves.
 | `git config --get core.hooksPath` | **`.githooks`** (wired by `npm install`, not by hand) |
 | `npm run check` on the clone as published | 158 files, 9 offenses, **0 errors**, **exit 0** |
 | The same fault, put back: the stylesheet the section names, removed | `git commit` printed `MissingAsset`, then **Commit refused. Nothing was committed.** |
-| `git log --oneline -1` right after the refusal | `b09c1cf`, the commit that was already there. **HEAD unchanged.** |
+| `git log --oneline -1` right after the refusal | `4fddd32`, the commit the clone came with. **HEAD unchanged.** |
 | The file restored, `npm run check` again | 158 files, 9 offenses, **0 errors**, **exit 0** |
 
 The 9 offenses in the green runs are Dawn's own warnings. They are printed every

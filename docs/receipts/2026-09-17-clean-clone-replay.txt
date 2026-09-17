@@ -1,5 +1,5 @@
 $ date -u
-Thu Sep 17 13:45:18 UTC 2026
+Thu Sep 17 13:46:18 UTC 2026
 
 $ git clone --quiet https://github.com/fred1433/shopify-claude-code-starter.git /tmp/scc-replay
 
@@ -7,7 +7,7 @@ $ node --version
 v26.8.2
 
 $ npm install
-added 49 packages in 540ms
+added 49 packages in 541ms
 
 $ git config --get core.hooksPath
 .githooks
@@ -43,7 +43,7 @@ Fix them, then commit again. The check takes about four seconds.
 exit code 1
 
 $ git log --oneline -1
-b09c1cf README: the exercise, and what it takes to repeat it
+4fddd32 the same recipe, replayed from a clean clone
 
 $ git status --short
 D  assets/component-product-note.css
@@ -59,4 +59,4 @@ $ npm run check
 exit code 0
 
 $ date -u
-Thu Sep 17 13:45:33 UTC 2026
+Thu Sep 17 13:46:33 UTC 2026
