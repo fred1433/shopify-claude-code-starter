@@ -1,0 +1,144 @@
+$ date -u
+2026-09-17T12:59:20Z
+
+$ git commit -m "product note block under the buy button"
+theme check: reading the whole theme before this commit...
+<claude-code-hint v="1" type="plugin" value="shopify-ai-toolkit@claude-plugins-official" />
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  layout/password.liquid                                                      │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'scheme_classes' used.                                       │
+│                                                                              │
+│  40  {% assign scheme_classes = scheme_classes | append: ', .color-' |       │
+│  append: scheme.id %}                                                        │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  layout/theme.liquid                                                         │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'scheme_classes' used.                                       │
+│                                                                              │
+│  82  {% assign scheme_classes = scheme_classes | append: ', .color-' |       │
+│  append: scheme.id %}                                                        │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/main-article.liquid                                                │
+│                                                                              │
+│                                                                              │
+│  [warning]: VariableName                                                     │
+│  The variable 'anchorId' uses wrong naming format                            │
+│                                                                              │
+│  102  {%- assign anchorId = '#Comments-' | append: article.id -%}            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/main-list-collections.liquid                                       │
+│                                                                              │
+│                                                                              │
+│  [warning]: VariableName                                                     │
+│  The variable 'moduloResult' uses wrong naming format                        │
+│                                                                              │
+│  20  assign moduloResult = 28 | modulo: section.settings.columns_desktop     │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/main-product.liquid                                                │
+│                                                                              │
+│                                                                              │
+│  [error]: MissingAsset                                                       │
+│  'assets/component-product-note.css' does not exist                          │
+│                                                                              │
+│  19  {{ 'component-product-note.css' | asset_url | stylesheet_tag }}         │
+│                                                                              │
+│                                                                              │
+│  [warning]: UnusedAssign                                                     │
+│  The variable 'seo_media' is assigned but not used                           │
+│                                                                              │
+│  750  assign seo_media = product.featured_media                              │
+│                                                                              │
+│                                                                              │
+│  [warning]: UndefinedObject                                                  │
+│  Unknown object 'continue' used.                                             │
+│                                                                              │
+│  606  offset: continue                                                       │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/main-search.liquid                                                 │
+│                                                                              │
+│                                                                              │
+│  [warning]: UnusedAssign                                                     │
+│  The variable 'product_settings' is assigned but not used                    │
+│                                                                              │
+│  274  {%- capture product_settings -%}{%- if                                 │
+│  section.settings.product_show_vendor -%}vendor,{%- endif -%}title,price{%-  │
+│   endcapture -%}                                                             │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  snippets/facets.liquid                                                      │
+│                                                                              │
+│                                                                              │
+│  [warning]: LiquidComplexity                                                 │
+│  Liquid complexity is 136, which exceeds the maximum of 120. The decision    │
+│  at line 865 pushed it over the limit. Consider simplifying conditional      │
+│  logic, or moving self-contained decision logic into snippets with the       │
+│  render tag.                                                                 │
+│                                                                              │
+│  865  {% if results.current_vendor or results.current_type %}                │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  snippets/quick-order-product-row.liquid                                     │
+│                                                                              │
+│                                                                              │
+│  [warning]: OrphanedSnippet                                                  │
+│  This snippet is not referenced by any other files                           │
+│                                                                              │
+│  1  {% comment %}                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  Theme Check Summary.                                                        │
+│                                                                              │
+│  158 files inspected with 10 total offenses found across 8 files.            │
+│  1 errors.                                                                   │
+│  9 warnings.                                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+------------------------------------------------------------------
+Commit refused. Nothing was committed.
+
+The theme check found errors, listed above. Each one names the rule
+it broke; the rules are explained in CLAUDE.md.
+
+Fix them, then commit again. The check takes about four seconds.
+------------------------------------------------------------------
+
+
+$ echo $?
+1

@@ -15,6 +15,8 @@
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+  {%- comment -%} shopify-claude-code-starter: product note block {%- endcomment -%}
+  {{ 'component-product-note.css' | asset_url | stylesheet_tag }}
 
   {% unless product.has_only_default_variant %}
     {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
@@ -499,6 +501,9 @@
                     section_id: section.id,
                     show_pickup_availability: true
                   -%}
+                {%- comment -%} shopify-claude-code-starter: product note block {%- endcomment -%}
+                {%- when 'product_note' -%}
+                  {%- render 'product-note', product: product, block: block -%}
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
                     <div class="rating-wrapper">
@@ -791,6 +796,26 @@
           ],
           "default": "body",
           "label": "t:sections.main-product.blocks.text.settings.text_style.label"
+        }
+      ]
+    },
+    {
+      "type": "product_note",
+      "name": "Product note (starter)",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "note",
+          "label": "Wording",
+          "default": "Sample wording. Change it in the theme editor.",
+          "info": "Drag the block to move the note up or down the column."
+        },
+        {
+          "type": "text",
+          "id": "product_tag",
+          "label": "Show only on products carrying this tag",
+          "info": "Leave empty to show it on every product using this template."
         }
       ]
     },

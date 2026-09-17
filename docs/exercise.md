@@ -79,3 +79,62 @@ listed in the README. It is a decision taken with the cost in view, not a reflex
 The block that comes out of it has two settings, both in the theme editor:
 the wording, and the tag it reacts to. Leave the tag empty and it shows
 everywhere. No developer needed to change either.
+
+## 3. The change, and what the check refused
+
+The code is 54 added lines: 25 in Dawn's product section, 29 in a new snippet,
+plus a small stylesheet.
+
+The first attempt at committing it was refused. The stylesheet was named in the
+section but had not been written yet, so the block would have reached customers
+unstyled on every product page. The check found it, the commit was not created,
+and the terminal said so in one line.
+
+The whole thing is in
+[`receipts/2026-09-17-refused-commit.md`](receipts/2026-09-17-refused-commit.md):
+the faulty line, the command, the rule, the exit code, and the proof that nothing
+was committed. **That mistake was introduced on purpose**, to exercise the check.
+
+Then the missing file was written, the same command passed, and the commit was
+created. Two lines of terminal, four seconds, no meeting.
+
+What this earns, and what it does not:
+
+- Automated checks passed.
+- Shopify rendering and editor behaviour: not tested.
+
+The second line is not a caveat added out of modesty. Theme Check reads files; it
+does not open a browser. Seeing the note sit correctly under the buy button is a
+preview on a development theme, and that is a different verdict from a different
+tool.
+
+## 4. Doing it again, yourself
+
+The point of the exercise is that the next one does not need me.
+
+**A variation to try.** Ask for a second note, shown only on products tagged
+`clearance`, in a different wording. Nothing in the code needs to change: add the
+block a second time in the theme editor, type the tag, type the words. If that
+works without a developer, the block was built right. If it does not, that is the
+bug, not the wording.
+
+**What to check before it goes live.**
+
+```bash
+npm run check          # zero errors, four seconds
+shopify theme push --unpublished    # a copy nobody can see but you
+```
+
+Then look at the preview: a product with the tag, a product without it, and a
+phone width. The check cannot do any of those three.
+
+**How to go back.** Every step above is a commit, so nothing is a one way door:
+
+```bash
+git log --oneline               # find the change
+git revert <commit>             # undo it, keeping the history honest
+git checkout -- .               # throw away edits not yet committed
+```
+
+And in the shop itself, the theme you published last is still there, untouched,
+for as long as you keep it.

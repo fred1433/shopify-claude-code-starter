@@ -1,0 +1,14 @@
+.product-note {
+  margin: 1.2rem 0 0;
+  padding: 1.2rem 1.4rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  border-radius: var(--text-boxes-radius, 0.4rem);
+  background: rgba(var(--color-foreground), 0.03);
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: rgba(var(--color-foreground), 0.82);
+}
+
+.product-note:empty {
+  display: none;
+}

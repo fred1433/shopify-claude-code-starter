@@ -1,0 +1,29 @@
+{%- comment -%}
+  Renders a short note in the product information column.
+
+  Added by shopify-claude-code-starter. Not part of Dawn.
+
+  Accepts:
+  - product: {Object} the product the page is showing
+  - block: {Object} the section block, with settings `note` and `product_tag`
+
+  Usage:
+  {% render 'product-note', product: product, block: block %}
+{%- endcomment -%}
+
+{%- liquid
+  assign required_tag = block.settings.product_tag | strip
+  assign show_note = true
+
+  if required_tag != blank
+    unless product.tags contains required_tag
+      assign show_note = false
+    endunless
+  endif
+-%}
+
+{%- if show_note and block.settings.note != blank -%}
+  <p class="product-note" {{ block.shopify_attributes }}>
+    {{- block.settings.note | escape -}}
+  </p>
+{%- endif -%}
