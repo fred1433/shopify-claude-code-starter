@@ -59,6 +59,12 @@ used here:
 To preview on a real shop, `npm run dev` asks for a store and creates a
 development theme nobody else can see. Nothing here touches a published theme.
 
+Those four lines were run against this repository as GitHub serves it, on a
+machine that had never seen it, on 17 September 2026: the hook installed itself,
+the theme came out clean, the same fault was refused again and nothing was
+committed. Receipt:
+[`docs/receipts/2026-09-17-clean-clone-replay.md`](docs/receipts/2026-09-17-clean-clone-replay.md).
+
 ## What is in here
 
 | | |

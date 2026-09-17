@@ -1,0 +1,62 @@
+$ date -u
+Thu Sep 17 13:45:18 UTC 2026
+
+$ git clone --quiet https://github.com/fred1433/shopify-claude-code-starter.git /tmp/scc-replay
+
+$ node --version
+v26.8.2
+
+$ npm install
+added 49 packages in 540ms
+
+$ git config --get core.hooksPath
+.githooks
+
+$ npm run check
+  Theme Check Summary.                                                        
+  158 files inspected with 9 total offenses found across 8 files.             
+  9 warnings.                                                                 
+exit code 0
+
+# put the fault back: remove the stylesheet the section names
+
+$ git rm -q assets/component-product-note.css
+
+$ git commit -m "replay: faulty commit attempt"
+  [error]: MissingAsset                                                       
+  'assets/component-product-note.css' does not exist                          
+  19  {{ 'component-product-note.css' | asset_url | stylesheet_tag }}         
+  [warning]: UnusedAssign                                                     
+--
+ info 
+  Theme Check Summary.                                                        
+  158 files inspected with 10 total offenses found across 8 files.            
+  1 errors.                                                                   
+  9 warnings.                                                                 
+--
+------------------------------------------------------------------
+Commit refused. Nothing was committed.
+The theme check found errors, listed above. Each one names the rule
+it broke; the rules are explained in CLAUDE.md.
+Fix them, then commit again. The check takes about four seconds.
+------------------------------------------------------------------
+exit code 1
+
+$ git log --oneline -1
+b09c1cf README: the exercise, and what it takes to repeat it
+
+$ git status --short
+D  assets/component-product-note.css
+
+# restore the file and check again
+
+$ git checkout HEAD -- assets/component-product-note.css
+
+$ npm run check
+  Theme Check Summary.                                                        
+  158 files inspected with 9 total offenses found across 8 files.             
+  9 warnings.                                                                 
+exit code 0
+
+$ date -u
+Thu Sep 17 13:45:33 UTC 2026
