@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# Runs Shopify's theme check before every commit and refuses the commit if the
+# theme has errors. Wired by `npm install` (the prepare script) or `npm run setup`.
+#
+# It looks at the whole theme, not only the changed files, because a change in one
+# file is what breaks another: a renamed stylesheet, a section removed from under
+# a template.
+
+ROOT=$(git rev-parse --show-toplevel)
+BIN="$ROOT/node_modules/.bin/shopify"
+
+if [ ! -x "$BIN" ]; then
+  echo "theme check cannot run: the Shopify CLI is not installed."
+  echo "Run: npm install"
+  exit 1
+fi
+
+echo "theme check: reading the whole theme before this commit..."
+
+if SHOPIFY_CLI_NO_ANALYTICS=1 "$BIN" theme check --fail-level error --path "$ROOT"; then
+  exit 0
+fi
+
+cat <<'MESSAGE'
+
+------------------------------------------------------------------
+Commit refused. Nothing was committed.
+
+The theme check found errors, listed above. Each one names the rule
+it broke; the rules are explained in CLAUDE.md.
+
+Fix them, then commit again. The check takes about four seconds.
+------------------------------------------------------------------
+
+MESSAGE
+
+exit 1

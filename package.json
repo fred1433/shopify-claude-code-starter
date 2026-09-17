@@ -1,0 +1,16 @@
+{
+  "name": "shopify-claude-code-starter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Shopify theme workspace set up for working with Claude Code: rules Claude reads, checks that catch its mistakes, one section built end to end.",
+  "scripts": {
+    "check": "shopify theme check --fail-level error --path .",
+    "dev": "shopify theme dev",
+    "setup": "git config core.hooksPath .githooks",
+    "prepare": "git config core.hooksPath .githooks || true"
+  },
+  "devDependencies": {
+    "@shopify/cli": "4.8.0"
+  },
+  "license": "SEE LICENSE IN LICENSE.md"
+}

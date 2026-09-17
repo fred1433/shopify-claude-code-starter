@@ -1,0 +1,29 @@
+name: theme check
+
+# The same check the commit hook runs, run again on GitHub for every push.
+# Two nets: one on the machine where the code is written, one that nobody can
+# skip.
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  theme-check:
+    name: theme check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install the Shopify CLI
+        run: npm ci
+
+      - name: Check the theme
+        env:
+          SHOPIFY_CLI_NO_ANALYTICS: '1'
+        run: npx shopify theme check --fail-level error --path .

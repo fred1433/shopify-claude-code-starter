@@ -1,0 +1,22 @@
+# What is allowed to reach the live theme, and what is not.
+#
+# `theme check` is Shopify's own checker, run by `npm run check`, by the commit
+# hook in .githooks/pre-commit, and by CI on every push. An error refuses the
+# commit. A warning is printed and lets it through.
+#
+# Dawn itself ships 9 warnings (unused variables, one long snippet). We leave
+# them visible rather than silence them, and we block on errors only.
+
+extends: theme-check:recommended
+
+# Raised from warning to error. This is a project rule, not a Shopify default:
+# nothing in this theme may be fetched from another company's server. It adds a
+# connection to every page view and it can change or vanish without notice.
+RemoteAsset:
+  severity: error
+
+# Dawn's own config switches this one off. We keep it on: it is what makes rule 7
+# of CLAUDE.md true, by refusing a translation key that exists in one locale file
+# and not in the other 50.
+MatchingTranslations:
+  enabled: true
